@@ -8,9 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Represents the game window for Tetris.
- */
 public class GameWindow extends JFrame implements ActionListener {
     private GameFieldPanel gameField;
     private GameSidePanel scorePanel;
@@ -37,11 +34,6 @@ public class GameWindow extends JFrame implements ActionListener {
     private JButton btnRestart;
     private boolean isPaused = false;
 
-    /**
-     * Initializes the game window.
-     *
-     * @throws IOException if there is an error reading the game assets.
-     */
     public GameWindow() throws IOException {
         initWindow();
         initGameField();
@@ -50,9 +42,6 @@ public class GameWindow extends JFrame implements ActionListener {
         initControls();
     }
 
-    /**
-     * Initializes the main game window.
-     */
     private void initWindow() {
         setTitle("Tetris ~ Game");
         setLayout(null);
@@ -64,25 +53,16 @@ public class GameWindow extends JFrame implements ActionListener {
         setContentPane(new JLabel(new ImageIcon(BACKGROUND_IMG)));
     }
 
-    /**
-     * Initializes the game field panel.
-     */
     private void initGameField() {
         gameField = new GameFieldPanel(10);
         add(gameField);
     }
 
-    /**
-     * Initializes the side panel for score display.
-     */
     private void initSidePanel() {
         scorePanel = new GameSidePanel();
         add(scorePanel);
     }
 
-    /**
-     * Initializes the buttons for various game actions.
-     */
     private void initButtons() {
         btnReturnToMenu = new JButton();
         btnReturnToMenu.setBounds(25, 120, 300, 80);
@@ -92,14 +72,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnReturnToMenu.setContentAreaFilled(false);
         btnReturnToMenu.setBorderPainted(false);
         btnReturnToMenu.setFocusPainted(false);
-        btnReturnToMenu.setIcon(RETURN_TO_MENU_ICON_1);
+        btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnReturnToMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReturnToMenu.setIcon(RETURN_TO_MENU_ICON_2);
+                btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReturnToMenu.setIcon(RETURN_TO_MENU_ICON_1);
+                btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -111,14 +91,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnPause.setContentAreaFilled(false);
         btnPause.setBorderPainted(false);
         btnPause.setFocusPainted(false);
-        btnPause.setIcon(PAUSE_BUTTON_ICON_1);
+        btnPause.setIcon(new ImageIcon(PAUSE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnPause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPause.setIcon(PAUSE_BUTTON_ICON_2);
+                btnPause.setIcon(new ImageIcon(PAUSE_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPause.setIcon(PAUSE_BUTTON_ICON_1);
+                btnPause.setIcon(new ImageIcon(PAUSE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -131,14 +111,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnContinue.setBorderPainted(false);
         btnContinue.setFocusPainted(false);
         btnContinue.setVisible(false);
-        btnContinue.setIcon(CONTINUE_BUTTON_ICON_1);
+        btnContinue.setIcon(new ImageIcon(CONTINUE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnContinue.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnContinue.setIcon(CONTINUE_BUTTON_ICON_2);
+                btnContinue.setIcon(new ImageIcon(CONTINUE_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnContinue.setIcon(CONTINUE_BUTTON_ICON_1);
+                btnContinue.setIcon(new ImageIcon(CONTINUE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -150,14 +130,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnMute.setContentAreaFilled(false);
         btnMute.setBorderPainted(false);
         btnMute.setFocusPainted(false);
-        btnMute.setIcon(MUTE_BUTTON_ICON_1);
+        btnMute.setIcon(new ImageIcon(MUTE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnMute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMute.setIcon(MUTE_BUTTON_ICON_2);
+                btnMute.setIcon(new ImageIcon(MUTE_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMute.setIcon(MUTE_BUTTON_ICON_1);
+                btnMute.setIcon(new ImageIcon(MUTE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -169,14 +149,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnUnmute.setContentAreaFilled(false);
         btnUnmute.setBorderPainted(false);
         btnUnmute.setFocusPainted(false);
-        btnUnmute.setIcon(UNMUTE_BUTTON_ICON_1);
+        btnUnmute.setIcon(new ImageIcon(UNMUTE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnUnmute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnUnmute.setIcon(UNMUTE_BUTTON_ICON_2);
+                btnUnmute.setIcon(new ImageIcon(UNMUTE_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnUnmute.setIcon(UNMUTE_BUTTON_ICON_1);
+                btnUnmute.setIcon(new ImageIcon(UNMUTE_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -188,14 +168,14 @@ public class GameWindow extends JFrame implements ActionListener {
         btnRestart.setContentAreaFilled(false);
         btnRestart.setBorderPainted(false);
         btnRestart.setFocusPainted(false);
-        btnRestart.setIcon(RESTART_BUTTON_ICON_1);
+        btnRestart.setIcon(new ImageIcon(RESTART_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnRestart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRestart.setIcon(RESTART_BUTTON_ICON_2);
+                btnRestart.setIcon(new ImageIcon(RESTART_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRestart.setIcon(RESTART_BUTTON_ICON_1);
+                btnRestart.setIcon(new ImageIcon(RESTART_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -213,21 +193,16 @@ public class GameWindow extends JFrame implements ActionListener {
         add(btnRestart);
     }
 
-    /**
-     * Initializes the keyboard controls for the game.
-     */
     private void initControls() {
         InputMap inputMap = getRootPane().getInputMap();
         ActionMap actionMap = getRootPane().getActionMap();
 
-        // Map key strokes to actions
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "right");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "left");
         inputMap.put(KeyStroke.getKeyStroke("UP"), "up");
         inputMap.put(KeyStroke.getKeyStroke("DOWN"), "down");
         inputMap.put(KeyStroke.getKeyStroke("SPACE"), "space");
 
-        // Define actions for each key stroke
         actionMap.put("right", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -270,9 +245,6 @@ public class GameWindow extends JFrame implements ActionListener {
         });
     }
 
-    /**
-     * Starts the game by creating and starting a new game thread.
-     */
     public void startGame() {
         gameThread = new GameThread(gameField, scorePanel);
         gameThread.start();

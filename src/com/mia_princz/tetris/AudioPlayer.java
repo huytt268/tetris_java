@@ -4,10 +4,6 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * The AudioPlayer class handles playing audio clips for various Tetris game events.
- * It provides methods for initializing sounds, playing specific sounds, controlling volume, and muting/unmuting the game.
- */
 public class AudioPlayer {
     private static Clip BUTTON_SOUND;
 
@@ -42,11 +38,6 @@ public class AudioPlayer {
 
     private static boolean isMuted = false;
 
-    /**
-     * Initializes the audio clips by loading the corresponding sound files.
-     * This method should be called once during the initialization of the game.
-     * It handles potential exceptions that may occur during audio clip loading.
-     */
     public static void initSounds() {
         // Exception handling block for loading audio clips
         try {
@@ -86,114 +77,68 @@ public class AudioPlayer {
         }
     }
 
-    /**
-     * Plays the sound for a button press event.
-     */
     public static void playButtonSound() {
         BUTTON_SOUND.setFramePosition(0);
         BUTTON_SOUND.start();
     }
 
-    /**
-     * Plays the sound for moving a block.
-     */
     public static void playMoveBlockSound() {
         MOVE_BLOCK_SOUND.setFramePosition(0);
         MOVE_BLOCK_SOUND.start();
     }
 
-    /**
-     * Plays the sound for rotating a block.
-     */
     public static void playRotateBlockSound() {
         ROTATE_BLOCK_SOUND.setFramePosition(0);
         ROTATE_BLOCK_SOUND.start();
     }
 
-    /**
-     * Plays the sound if a block lands.
-     */
     public static void playBlockLandedSound() {
         BLOCK_LANDED_SOUND.setFramePosition(0);
         BLOCK_LANDED_SOUND.start();
     }
 
-    /**
-     * Plays the sound for hard dropping a block.
-     */
     public static void playBlockHardDropSound() {
         BLOCK_HARD_DROP_SOUND.setFramePosition(0);
         BLOCK_HARD_DROP_SOUND.start();
     }
 
-    /**
-     * Plays the sound if a line was cleared.
-     */
     public static void playLineClearedSound() {
         LINE_CLEARED_SOUND.setFramePosition(0);
         LINE_CLEARED_SOUND.start();
     }
 
-    /**
-     * Plays the sound if four lines were cleared.
-     */
     public static void playFourLineClearedSound() {
         FOUR_LINE_CLEARED_SOUND.setFramePosition(0);
         FOUR_LINE_CLEARED_SOUND.start();
     }
 
-    /**
-     * Plays the sound if leveled up.
-     */
     public static void playLevelUpSound() {
         LEVEL_UP_SOUND.setFramePosition(0);
         LEVEL_UP_SOUND.start();
     }
 
-    /**
-     * Plays the sound if the game is over.
-     */
     public static void playGameOverSound() {
         GAME_OVER_SOUND.setFramePosition(0);
         GAME_OVER_SOUND.start();
     }
 
-    /**
-     * Plays the sound of the theme song.
-     */
     public static void playGameThemeSong() {
         GAME_THEME_SONG.setFramePosition(0);
         GAME_THEME_SONG.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    /**
-     * Retrieves the current music volume level.
-     * @return The current music volume level.
-     */
     public static float getCurrentMusicVolume() {
         return CURRENT_MUSIC_VOLUME;
     }
 
-    /**
-     * Sets the current music volume level.
-     * @param value The new value for the music volume.
-     */
     public static void setCurrentMusicVolume(float value) {
         CURRENT_MUSIC_VOLUME = value;
     }
 
-    /**
-     * Retrieves the current SFX volume level.
-     * @return The current SFX volume level.
-     */
     public static float getCurrentSfxVolume() {
         return CURRENT_SFX_VOLUME;
     }
 
-    /**
-     * Sets the current SFX volume level.
-     * @param value The new SFX for the music volume.
-     */
     public static void setCurrentSfxVolume(float value) {
         CURRENT_SFX_VOLUME = value;
     }
@@ -216,11 +161,6 @@ public class AudioPlayer {
         };
     }
 
-    /**
-     * Mutes or unmutes the game by adjusting the volume levels of music and sound effects.
-     * If the game is currently muted, it will be unmuted with the previous volume levels.
-     * If the game is not muted, it will be muted, and the volume levels will be set to -80.
-     */
     public static void muteOrUnmuteGame() {
         if (!isMuted) {
             PREVIOUS_MUSIC_VOLUME = CURRENT_MUSIC_VOLUME;
@@ -242,10 +182,6 @@ public class AudioPlayer {
         }
     }
 
-    /**
-     * Checks if the game is currently muted.
-     * @return true if the game is muted, false otherwise.
-     */
     public static boolean getIsMuted() {
         return isMuted;
     }

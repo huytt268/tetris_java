@@ -6,34 +6,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-/**
- * Represents the side panel of the Tetris game window that displays game information and the next block preview.
- */
 public class GameSidePanel extends JPanel {
 
-    // Label to display the current score.
     private JLabel lblScore;
 
-    // Label to display the current level.
     private JLabel lblLevel;
 
-    // Label to display the number of cleared lines.
     private JLabel lblClearedLines;
 
-    // The size of each cell in the grid.
     private final int GRID_CELL_SIZE = 40;
 
-    // The currently active Tetris block.
     protected TetrisBlock block;
 
-    // An array of available Tetris blocks.
     private final TetrisBlock[] BLOCKS;
 
-    /**
-     * Constructs a new GameSidePanel instance.
-     * Sets the panel's size, layout, and transparency.
-     * Initializes the labels and the array of Tetris blocks.
-     */
     public GameSidePanel() {
         setBounds(780,120,300,800);
         setLayout(null);
@@ -51,9 +37,6 @@ public class GameSidePanel extends JPanel {
         };
     }
 
-    /**
-     * Initializes the labels for displaying game information.
-     */
     private void initLabels() {
         lblScore = new JLabel("Score: " + 0);
         lblLevel = new JLabel("Level: " + 0);
@@ -91,36 +74,18 @@ public class GameSidePanel extends JPanel {
         add(textPanelBackground);
     }
 
-    /**
-     * Updates the score label with the given score value.
-     * @param score The new score value.
-     */
     protected void updateScore(int score) {
         lblScore.setText("Score: " + score);
     }
 
-
-    /**
-     * Updates the level label with the given level value.
-     * @param level The new level value.
-     */
     protected void updateLevel(int level) {
         lblLevel.setText("Level: " + level);
     }
 
-    /**
-     * Updates the cleared lines label with the given cleared lines value.
-     * @param clearedLines The new cleared lines value.
-     */
     protected void updateClearedLines(int clearedLines) {
         lblClearedLines.setText("Cleared Lines: " + clearedLines);
     }
 
-    /**
-     * Spawns a new Tetris block on the game field.
-     * Randomly selects a block from the BLOCKS array and sets its initial position.
-     * @return The index of the next block in the BLOCKS array.
-     */
     protected int spawnBlock() {
         Random random = new Random();
 
@@ -134,10 +99,6 @@ public class GameSidePanel extends JPanel {
         return nextBlock;
     }
 
-    /**
-     * Draws the currently active Tetris block on the game field.
-     * @param g The Graphics object used for drawing.
-     */
     private void drawBlock(Graphics g) {
         int height = block.getHeight();
         int width = block.getWidth();
@@ -160,10 +121,6 @@ public class GameSidePanel extends JPanel {
         }
     }
 
-    /**
-     * Overrides the paintComponent method to draw the game side panel.
-     * @param g The Graphics object used for drawing.
-     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Represents the leaderboard data for the Tetris game.
- */
 public class LeaderboardData extends AbstractTableModel {
 
     private final String[] COLUMNS_NAME = {"Name", "Highscore"};
@@ -17,9 +14,6 @@ public class LeaderboardData extends AbstractTableModel {
 
     private final String LEADERBOARD_DATA_FILENAME = "leaderboard.txt";
 
-    /**
-     * Constructs a new instance of the LeaderboardData class and loads the leaderboard data.
-     */
     public LeaderboardData() {
         loadLeaderboard();
     }
@@ -49,12 +43,6 @@ public class LeaderboardData extends AbstractTableModel {
         };
     }
 
-    /**
-     * Adds a player's score to the leaderboard data.
-     *
-     * @param playerName The name of the player.
-     * @param playerScore The player's score.
-     */
     protected void addPlayerToMap(String playerName, int playerScore) {
         if (leaderboardDataContainer.isEmpty()) {
             leaderboardDataContainer.put(playerName, playerScore);
@@ -79,9 +67,7 @@ public class LeaderboardData extends AbstractTableModel {
 
         fireTableDataChanged();
     }
-    /**
-     * Saves the leaderboard data to a file.
-     */
+
     public void saveLeaderboard() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(LEADERBOARD_DATA_FILENAME);
@@ -94,9 +80,6 @@ public class LeaderboardData extends AbstractTableModel {
         }
     }
 
-    /**
-     * Loads the leaderboard data from a file.
-     */
     public void loadLeaderboard() {
         try {
             // If the file does not exist then create it.

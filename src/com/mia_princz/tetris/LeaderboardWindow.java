@@ -8,9 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Represents the leaderboard window in the Tetris game.
- */
 public class LeaderboardWindow extends JFrame implements ActionListener {
 
     private JTable leaderboard;
@@ -21,13 +18,6 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
     private JButton btnReturnToMenu;
     private final BackgroundAnimationThread BACKGROUND_ANIMATION_THREAD;
 
-    /**
-     * Constructs a new instance of the LeaderboardWindow class.
-     *
-     * @param menuBackgroundPanel      The menu background panel.
-     * @param backgroundAnimationThread The background animation thread.
-     * @throws IOException If an I/O error occurs.
-     */
     public LeaderboardWindow(MenuBackgroundPanel menuBackgroundPanel, BackgroundAnimationThread backgroundAnimationThread) throws IOException {
         initWindow();
 
@@ -92,7 +82,6 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
         add(btnReturnToMenu);
     }
 
-
     private void initScrollPane() {
         JScrollPane pane = new JScrollPane(leaderboard, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         pane.setBounds(30, 50, 500, 500); // Adjusted scroll pane position and size
@@ -101,21 +90,10 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
         add(pane);
     }
 
-    /**
-     * Gets the leaderboard data.
-     *
-     * @return The leaderboard data.
-     */
     public LeaderboardData getDATA() {
         return DATA;
     }
 
-    /**
-     * Adds a player to the leaderboard with the specified name and score.
-     *
-     * @param playerName  The name of the player.
-     * @param playerScore The score of the player.
-     */
     public void addPlayer(String playerName, int playerScore) {
         DATA.addPlayerToMap(playerName, playerScore);
     }

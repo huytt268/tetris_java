@@ -189,11 +189,11 @@ public class MenuWindow extends JFrame implements ActionListener {
 
             Tetris.showSettings();
         } else if (ae.getActionCommand().equals("exit")) {
-            AudioPlayer.playButtonSound();
+            //AudioPlayer.playButtonSound();
 
             BACKGROUND_ANIMATION_THREAD.stopThread();
-
-            dispose();
+            System.exit(0);
+            //dispose();
         }
     }
 }

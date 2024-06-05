@@ -12,29 +12,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * The settings window of the Tetris game.
- * This class extends JFrame and implements ActionListener.
- */
 public class SettingsWindow extends JFrame implements ActionListener {
 
-    // Background animation thread
     private final BackgroundAnimationThread BACKGROUND_ANIMATION_THREAD;
 
-    // Music volume slider
     private JSlider sliderMusicVolume;
 
-    // Sound effects volume slider
     private JSlider sliderSFXVolume;
 
-    /**
-     * Constructs a SettingsWindow object.
-     *
-     * @param menuBackgroundPanel       The menu background panel.
-     * @param backgroundAnimationThread The background animation thread.
-     */
     public SettingsWindow(MenuBackgroundPanel menuBackgroundPanel, BackgroundAnimationThread backgroundAnimationThread) {
-        // Initialization methods
         initWindow();
         initButtons();
         initSliders();

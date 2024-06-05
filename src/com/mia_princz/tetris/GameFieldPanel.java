@@ -6,42 +6,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-/**
- * The GameFieldPanel class represents the panel where the Tetris game field is displayed.
- * It manages the drawing of blocks, background, and handles various game-related operations.
- */
 public class GameFieldPanel extends JPanel {
 
-    // The number of rows in the game field grid.
     private final int GRID_ROWS;
 
-    // The number of columns in the game field grid.
     private final int GRID_COLUMNS;
 
-    // The size of each cell in the grid.
     private final int GRID_CELL_SIZE;
 
-    // The currently active Tetris block.
     private TetrisBlock block;
 
-    // An array of available Tetris blocks.
     private final TetrisBlock[] BLOCKS;
 
-    // The background grid that holds the placed blocks.
     private final Color[][] BACKGROUND;
 
     private volatile boolean paused = false;
 
     private final Object syncObject = new Object();
 
-    /**
-     * Constructs a new GameFieldPanel with the specified number of columns.
-     * @param paramColumns The number of columns in the game field grid.
-     */
     public GameFieldPanel(int paramColumns) {
-        // Initialization of instance variables and setup of the panel
         setBorder(BorderFactory.createLineBorder(new Color(0,0,0,225), 3));
-        setBounds(360,120,400,800);
+        setBounds(360,120,400,600);
         setOpaque(false);
 
         GRID_COLUMNS = paramColumns;
@@ -60,13 +45,6 @@ public class GameFieldPanel extends JPanel {
         };
     }
 
-    /**
-     * Spawns a new Tetris block on the game field.
-     * If isFirstBlockSpawned is false, a random block is selected.
-     * If isFirstBlockSpawned is true, the block at the specified index is selected from the BLOCKS array.
-     * @param nextBlock The index of the next block to spawn from the BLOCKS array.
-     * @param isFirstBlockSpawned Indicates whether this is the first block being spawned.
-     */
     protected void spawnBlock(int nextBlock, boolean isFirstBlockSpawned) {
         if (!isFirstBlockSpawned) {
             Random random = new Random();
@@ -86,10 +64,6 @@ public class GameFieldPanel extends JPanel {
         return false;
     }
 
-    /**
-     * Draws the currently active Tetris block on the game field.
-     * @param g The Graphics object used for drawing.
-     */
     private void drawBlock(Graphics g) {
         int height = block.getHeight();
         int width = block.getWidth();
@@ -109,10 +83,6 @@ public class GameFieldPanel extends JPanel {
         }
     }
 
-    /**
-     * Draws the background grid and the placed blocks on the game field.
-     * @param g The Graphics object used for drawing.
-     */
     private void drawBackground(Graphics g) {
         Color color = null;
 
@@ -137,10 +107,6 @@ public class GameFieldPanel extends JPanel {
         g.drawRect(x, y, GRID_CELL_SIZE, GRID_CELL_SIZE);
     }
 
-    /**
-     * Checks if the active block has reached the bottom of the game field.
-     * @return true if the block can move down, false otherwise.
-     */
     protected boolean checkBottom() {
         if (block.getBottomEdge() == GRID_ROWS) {
             return false;
@@ -167,10 +133,6 @@ public class GameFieldPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Checks if the active block has reached the left corner of the game field.
-     * @return true if the block can move to the left, false otherwise.
-     */
     private boolean checkLeftCorner() {
         if (block.getLeftEdge() == 0) {
             return false;
@@ -197,10 +159,6 @@ public class GameFieldPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Checks if the active block has reached the right corner of the game field.
-     * @return true if the block can move to the right, false otherwise.
-     */
     private boolean checkRightCorner() {
         if (block.getRightEdge() == GRID_COLUMNS) {
             return false;
@@ -227,10 +185,6 @@ public class GameFieldPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Moves the active block one cell down on the game field.
-     * @return true if the block was moved down, false if it reached the bottom or couldn't move.
-     */
     protected boolean moveBlockDown() {
         synchronized (syncObject) {
             if (paused) {
@@ -253,9 +207,6 @@ public class GameFieldPanel extends JPanel {
         return true;
     }
 
-    /**
-     * Moves the active block one cell to the right on the game field.
-     */
     protected void moveBlockRight() {
         if (block == null) {
             return;
@@ -269,9 +220,6 @@ public class GameFieldPanel extends JPanel {
         repaint();
     }
 
-    /**
-     * Moves the active block one cell to the left on the game field.
-     */
     protected void moveBlockLeft() {
         if (block == null) {
             return;
@@ -284,9 +232,6 @@ public class GameFieldPanel extends JPanel {
         repaint();
     }
 
-    /**
-     * Drops the active block to the bottom of the game field.
-     */
     protected void dropBlock() {
         if (block == null) {
             return;
@@ -300,9 +245,6 @@ public class GameFieldPanel extends JPanel {
         repaint();
     }
 
-    /**
-     * Rotates the active block clockwise on the game field.
-     */
     protected void rotateBlock() {
         if (block == null) {
             return;
@@ -324,10 +266,6 @@ public class GameFieldPanel extends JPanel {
         repaint();
     }
 
-    /**
-     * Checks if there are any completed lines in the game field and clears them.
-     * @return The number of lines cleared.
-     */
     protected int clearLines() {
         boolean lineFilled;
         int linesCleared = 0;
@@ -368,10 +306,6 @@ public class GameFieldPanel extends JPanel {
         }
     }
 
-    /**
-     * Checks if the active block overlaps with any placed blocks on the game field.
-     * @return true if the block overlaps, false otherwise.
-     */
     protected boolean isItOverlaps() {
         int height = block.getHeight();
         int width = block.getWidth();
@@ -398,9 +332,6 @@ public class GameFieldPanel extends JPanel {
         return false;
     }
 
-    /**
-     * Moves the active block to the background grid, marking its cells as placed blocks.
-     */
     protected void moveBlockToBackground() {
         int[][] shape = block.getShape();
         int height = block.getHeight();
@@ -432,7 +363,6 @@ public class GameFieldPanel extends JPanel {
         return syncObject;
     }
 
-    // Logic to paint the game field panel, including the grid, background, and blocks
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
