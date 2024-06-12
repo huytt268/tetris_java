@@ -9,57 +9,24 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * The main menu window of the Tetris game.
- * This class extends JFrame and implements ActionListener.
- */
 public class MenuWindow extends JFrame implements ActionListener {
 
-    // The first icon for the start button
     private final ImageIcon START_BUTTON_ICON_1 = new ImageIcon("game_assets\\button_start-game.png");
-
-    // The second icon for the start button
     private final ImageIcon START_BUTTON_ICON_2 = new ImageIcon("game_assets\\button_start-game (1).png");
-
-    // The first icon for the leaderboard button
     private final ImageIcon LEADERBOARD_BUTTON_ICON_1 = new ImageIcon("game_assets\\button_leaderboard.png");
-
-    // The second icon for the leaderboard button
     private final ImageIcon LEADERBOARD_BUTTON_ICON_2 = new ImageIcon("game_assets\\button_leaderboard (1).png");
-
-    // The first icon for the settings button
     private final ImageIcon SETTINGS_BUTTON_ICON_1 = new ImageIcon("game_assets\\button_settings.png");
-
-    // The second icon for the settings button
     private final ImageIcon SETTINGS_BUTTON_ICON_2 = new ImageIcon("game_assets\\button_settings (1).png");
-
-    // The first icon for the exit button
     private final ImageIcon EXIT_BUTTON_ICON_1 = new ImageIcon("game_assets\\button_exit-game.png");
-
-    // The second icon for the exit button
     private final ImageIcon EXIT_BUTTON_ICON_2 = new ImageIcon("game_assets\\button_exit-game (1).png");
 
-    // The start button
     private JButton btbStart;
-
-    // The leaderboard button
     private JButton btnLeaderboard;
-
-    // The settings button
     private JButton btnSettings;
-
-    // The exit button
     private JButton btnExit;
 
-    // The background animation thread
     private final BackgroundAnimationThread BACKGROUND_ANIMATION_THREAD;
 
-    /**
-     * Constructs a MenuWindow object.
-     *
-     * @param menuBackgroundPanel       The menu background panel.
-     * @param backgroundAnimationThread The background animation thread.
-     */
     public MenuWindow(MenuBackgroundPanel menuBackgroundPanel, BackgroundAnimationThread backgroundAnimationThread) {
         initWindow();
         initTitleBarIcon();
@@ -73,7 +40,7 @@ public class MenuWindow extends JFrame implements ActionListener {
     private void initWindow() {
         setTitle("Tetris ~ Main Menu");
         setLayout(new BorderLayout());
-        setSize(720, 900);
+        setSize(560, 700); // Resized to 560x700
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -100,85 +67,85 @@ public class MenuWindow extends JFrame implements ActionListener {
 
         JLabel gameLogo = new JLabel();
         gameLogo.setIcon(new ImageIcon(scaled));
-        gameLogo.setBounds(160, 75, 375, 250);
+        gameLogo.setBounds(90, 50, 375, 250); // Adjusted position for resizing
 
         add(gameLogo);
     }
 
     private void initButtons() {
         btbStart = new JButton();
-        btbStart.setBounds(200,380,300,80);
         btbStart.setActionCommand("start");
         btbStart.addActionListener(this);
         btbStart.setOpaque(false);
         btbStart.setContentAreaFilled(false);
         btbStart.setBorderPainted(false);
         btbStart.setFocusPainted(false);
-        btbStart.setIcon(START_BUTTON_ICON_1);
+        btbStart.setIcon(new ImageIcon(START_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
+        btbStart.setBounds((getWidth() - 188) / 2, 310, 188, 80);
         btbStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btbStart.setIcon(START_BUTTON_ICON_2);
+                btbStart.setIcon(new ImageIcon(START_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btbStart.setIcon(START_BUTTON_ICON_1);
+                btbStart.setIcon(new ImageIcon(START_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
         btnLeaderboard = new JButton();
-        btnLeaderboard.setBounds(200,490,300,80);
         btnLeaderboard.setActionCommand("leaderboard");
         btnLeaderboard.addActionListener(this);
         btnLeaderboard.setOpaque(false);
         btnLeaderboard.setContentAreaFilled(false);
         btnLeaderboard.setBorderPainted(false);
         btnLeaderboard.setFocusPainted(false);
-        btnLeaderboard.setIcon(LEADERBOARD_BUTTON_ICON_1);
+        btnLeaderboard.setIcon(new ImageIcon(LEADERBOARD_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
+        btnLeaderboard.setBounds((getWidth() - 188) / 2, 400, 188, 80);
         btnLeaderboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLeaderboard.setIcon(LEADERBOARD_BUTTON_ICON_2);
+                btnLeaderboard.setIcon(new ImageIcon(LEADERBOARD_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLeaderboard.setIcon(LEADERBOARD_BUTTON_ICON_1);
+                btnLeaderboard.setIcon(new ImageIcon(LEADERBOARD_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
         btnSettings = new JButton();
-        btnSettings.setBounds(200,600,300,80);
         btnSettings.setActionCommand("settings");
         btnSettings.addActionListener(this);
         btnSettings.setOpaque(false);
         btnSettings.setContentAreaFilled(false);
         btnSettings.setBorderPainted(false);
         btnSettings.setFocusPainted(false);
-        btnSettings.setIcon(SETTINGS_BUTTON_ICON_1);
+        btnSettings.setIcon(new ImageIcon(SETTINGS_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
+        btnSettings.setBounds((getWidth() - 188) / 2, 490, 188, 80);
         btnSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSettings.setIcon(SETTINGS_BUTTON_ICON_2);
+                btnSettings.setIcon(new ImageIcon(SETTINGS_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSettings.setIcon(SETTINGS_BUTTON_ICON_1);
+                btnSettings.setIcon(new ImageIcon(SETTINGS_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
         btnExit = new JButton();
-        btnExit.setBounds(200,710,300,80);
         btnExit.setActionCommand("exit");
         btnExit.addActionListener(this);
         btnExit.setOpaque(false);
         btnExit.setContentAreaFilled(false);
         btnExit.setBorderPainted(false);
         btnExit.setFocusPainted(false);
-        btnExit.setIcon(EXIT_BUTTON_ICON_1);
+        btnExit.setIcon(new ImageIcon(EXIT_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
+        btnExit.setBounds((getWidth() - 188) / 2, 580, 188, 80);
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnExit.setIcon(EXIT_BUTTON_ICON_2);
+                btnExit.setIcon(new ImageIcon(EXIT_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnExit.setIcon(EXIT_BUTTON_ICON_1);
+                btnExit.setIcon(new ImageIcon(EXIT_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -187,6 +154,7 @@ public class MenuWindow extends JFrame implements ActionListener {
         add(btnExit);
         add(btnSettings);
     }
+
 
 
     @Override

@@ -43,10 +43,11 @@ public class SettingsWindow extends JFrame implements ActionListener {
         BACKGROUND_ANIMATION_THREAD = backgroundAnimationThread;
         add(menuBackgroundPanel);
     }
+
     private void initWindow() {
         setTitle("Tetris ~ Settings");
-        setLayout(new BorderLayout());
-        setSize(720, 900);
+        setLayout(null);
+        setSize(560, 700);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -54,21 +55,21 @@ public class SettingsWindow extends JFrame implements ActionListener {
 
     private void initButtons() {
         JButton backToMenuButton = new JButton();
-        backToMenuButton.setBounds(190, 700, 335, 70);
+        backToMenuButton.setBounds(186, 550, 188, 80); // Adjusted for new button size
         backToMenuButton.setActionCommand("back");
         backToMenuButton.addActionListener(this);
         backToMenuButton.setOpaque(false);
         backToMenuButton.setContentAreaFilled(false);
         backToMenuButton.setBorderPainted(false);
         backToMenuButton.setFocusPainted(false);
-        backToMenuButton.setIcon(new ImageIcon("game_assets\\button_return-to-menu.png"));
+        backToMenuButton.setIcon(new ImageIcon(new ImageIcon("game_assets\\button_return-to-menu.png").getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         backToMenuButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backToMenuButton.setIcon(new ImageIcon("game_assets\\button_return-to-menu (1).png"));
+                backToMenuButton.setIcon(new ImageIcon(new ImageIcon("game_assets\\button_return-to-menu (1).png").getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                backToMenuButton.setIcon(new ImageIcon("game_assets\\button_return-to-menu.png"));
+                backToMenuButton.setIcon(new ImageIcon(new ImageIcon("game_assets\\button_return-to-menu.png").getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
@@ -78,37 +79,39 @@ public class SettingsWindow extends JFrame implements ActionListener {
     private void initSliders() {
         sliderMusicVolume = new JSlider(-40, 6);
         sliderMusicVolume.setOpaque(false);
-        sliderMusicVolume.setBounds(320,100,300,60);
-        sliderMusicVolume.setValue((int) AudioPlayer.getCurrentMusicVolume());
+        sliderMusicVolume.setBounds(250, 100, 250, 50); // Adjusted for new window size
+        sliderMusicVolume.setValue(6); // Default value set to 100%
         sliderMusicVolume.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                AudioPlayer.setCurrentMusicVolume(sliderMusicVolume.getValue());
+                int newVolume = sliderMusicVolume.getValue();
+                AudioPlayer.setCurrentMusicVolume(newVolume);
 
-                if (AudioPlayer.getCurrentMusicVolume() == -40) {
-                    AudioPlayer.setCurrentMusicVolume(-80);
+                if (newVolume == -40) {
+                    newVolume = -80;
                 }
 
-                AudioPlayer.getFloatControlMusic().setValue(AudioPlayer.getCurrentMusicVolume());
+                AudioPlayer.getFloatControlMusic().setValue(newVolume);
             }
         });
 
         sliderSFXVolume = new JSlider(-40, 6);
         sliderSFXVolume.setOpaque(false);
-        sliderSFXVolume.setBounds(320,200,300,60);
-        sliderSFXVolume.setValue((int) AudioPlayer.getCurrentSfxVolume());
+        sliderSFXVolume.setBounds(250, 180, 250, 50); // Adjusted for new window size
+        sliderSFXVolume.setValue(6); // Default value set to 100%
         sliderSFXVolume.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                AudioPlayer.setCurrentSfxVolume(sliderSFXVolume.getValue());
+                int newVolume = sliderSFXVolume.getValue();
+                AudioPlayer.setCurrentSfxVolume(newVolume);
 
-                if (AudioPlayer.getCurrentSfxVolume() == -40) {
-                    AudioPlayer.setCurrentSfxVolume(-80);
+                if (newVolume == -40) {
+                    newVolume = -80;
                 }
 
                 FloatControl[] controls = AudioPlayer.getFloatControlSfx();
                 for (FloatControl control : controls) {
-                    control.setValue(AudioPlayer.getCurrentSfxVolume());
+                    control.setValue(newVolume);
                 }
             }
         });
@@ -124,23 +127,21 @@ public class SettingsWindow extends JFrame implements ActionListener {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Image scaled = img.getScaledInstance(210, 60, Image.SCALE_SMOOTH);
+        Image scaled = img.getScaledInstance(188, 80, Image.SCALE_SMOOTH); // Adjusted for new window size
 
         JLabel musicVolumeLalel = new JLabel();
         musicVolumeLalel.setIcon(new ImageIcon(scaled));
-        musicVolumeLalel.setBounds(100, 100, 210, 60);
+        musicVolumeLalel.setBounds(50, 80, 188, 80); // Adjusted for new window size
 
         try {
             img = ImageIO.read(new File("game_assets\\label_sfx-volume.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        scaled = img.getScaledInstance(210, 60, Image.SCALE_SMOOTH);
+        scaled = img.getScaledInstance(188, 80, Image.SCALE_SMOOTH); // Adjusted for new window size
         JLabel sfxVolumeLabel = new JLabel();
         sfxVolumeLabel.setIcon(new ImageIcon(scaled));
-        sfxVolumeLabel.setBounds(100, 200, 210, 60);
-
-
+        sfxVolumeLabel.setBounds(50, 160, 188, 80); // Adjusted for new window size
 
         add(musicVolumeLalel);
         add(sfxVolumeLabel);

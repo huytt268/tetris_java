@@ -24,7 +24,7 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
     /**
      * Constructs a new instance of the LeaderboardWindow class.
      *
-     * @param menuBackgroundPanel The menu background panel.
+     * @param menuBackgroundPanel      The menu background panel.
      * @param backgroundAnimationThread The background animation thread.
      * @throws IOException If an I/O error occurs.
      */
@@ -44,7 +44,7 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
     private void initWindow() {
         setTitle("Tetris ~ Leaderboard");
         setLayout(null);
-        setSize(720, 1080);
+        setSize(560, 700); // Changed window size
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -57,45 +57,46 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
         leaderboard.setFillsViewportHeight(true);
         leaderboard.getRowSorter().toggleSortOrder(1);
         leaderboard.getRowSorter().toggleSortOrder(1);
-        leaderboard.setFont(new Font("Serif", Font.BOLD, 20));
+        leaderboard.setFont(new Font("Serif", Font.BOLD, 14)); // Adjusted font size
         leaderboard.getTableHeader().setReorderingAllowed(false);
-        leaderboard.getTableHeader().setFont(new Font("Serif", Font.BOLD, 20));
+        leaderboard.getTableHeader().setFont(new Font("Serif", Font.BOLD, 14)); // Adjusted font size
         leaderboard.getTableHeader().setOpaque(false);
-        leaderboard.getTableHeader().setBackground(new Color(150,50,255, 90));
-        leaderboard.getTableHeader().setForeground(new Color(255,255,255));
-        leaderboard.getTableHeader().setMinimumSize(new Dimension(50,50));
-        leaderboard.setBackground(new Color(150,50,255,150));
-        leaderboard.setRowHeight(30);
-        leaderboard.setForeground(new Color(255,255,255));
+        leaderboard.getTableHeader().setBackground(new Color(150, 50, 255, 90));
+        leaderboard.getTableHeader().setForeground(new Color(255, 255, 255));
+        leaderboard.getTableHeader().setMinimumSize(new Dimension(50, 50));
+        leaderboard.setBackground(new Color(150, 50, 255, 150));
+        leaderboard.setRowHeight(20); // Adjusted row height
+        leaderboard.setForeground(new Color(255, 255, 255));
     }
 
     private void initButton() {
         btnReturnToMenu = new JButton();
-        btnReturnToMenu.setBounds(190, 900, 335, 70);
+        btnReturnToMenu.setBounds((getWidth() - 188) / 2, 570, 188, 80); // Adjusted button position and size
         btnReturnToMenu.setActionCommand("back");
         btnReturnToMenu.addActionListener(this);
         btnReturnToMenu.setOpaque(false);
         btnReturnToMenu.setContentAreaFilled(false);
         btnReturnToMenu.setBorderPainted(false);
         btnReturnToMenu.setFocusPainted(false);
-        btnReturnToMenu.setIcon(RETURN_TO_MENU_BUTTON_ICON_1);
+        btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
         btnReturnToMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReturnToMenu.setIcon(RETURN_TO_MENU_BUTTON_ICON_2);
+                btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_BUTTON_ICON_2.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReturnToMenu.setIcon(RETURN_TO_MENU_BUTTON_ICON_1);
+                btnReturnToMenu.setIcon(new ImageIcon(RETURN_TO_MENU_BUTTON_ICON_1.getImage().getScaledInstance(188, 80, Image.SCALE_SMOOTH)));
             }
         });
 
         add(btnReturnToMenu);
     }
 
+
     private void initScrollPane() {
         JScrollPane pane = new JScrollPane(leaderboard, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        pane.setBounds(110,90,500,750);
-        pane.setBackground(new Color(0,0,0,0));
+        pane.setBounds(30, 50, 500, 500); // Adjusted scroll pane position and size
+        pane.setBackground(new Color(0, 0, 0, 0));
 
         add(pane);
     }
@@ -112,7 +113,7 @@ public class LeaderboardWindow extends JFrame implements ActionListener {
     /**
      * Adds a player to the leaderboard with the specified name and score.
      *
-     * @param playerName The name of the player.
+     * @param playerName  The name of the player.
      * @param playerScore The score of the player.
      */
     public void addPlayer(String playerName, int playerScore) {
